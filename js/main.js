@@ -1,6 +1,6 @@
-import './utils.js';
-import './data.js';
 import {getOffers} from './data.js';
+import {createPopup} from './popup.js';
 
-// eslint-disable-next-line no-console
-console.log(getOffers());
+const offers = getOffers();
+
+document.querySelector('#map-canvas').appendChild(createPopup(offers[1]));
