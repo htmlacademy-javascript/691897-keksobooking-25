@@ -32,6 +32,10 @@ pristine.addValidator(
   getHousePriceError
 );
 
+houseType.addEventListener('change', () => {
+  pristine.validate();
+});
+
 pristine.addValidator(
   houseType,
   validatePrice,
@@ -59,10 +63,9 @@ pristine.addValidator(
   getGuestAmountError
 );
 
-pristine.addValidator(
-  capacity,
-  validateRoomGuest,
-);
+capacity.addEventListener('change', () => {
+  pristine.validate();
+});
 
 orderForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
