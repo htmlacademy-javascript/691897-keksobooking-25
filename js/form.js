@@ -1,11 +1,7 @@
 const orderForm = document.querySelector('.ad-form');
 const pristine = new Pristine(orderForm, {
   classTo: 'ad-form__element',
-  // errorClass: 'error',
-  // successClass: 'success',
   errorTextParent: 'ad-form__element',
-  // errorTextTag: 'p',
-  // errorTextClass: 'error__message'
 });
 
 const priceInput = orderForm.querySelector('#price');
@@ -72,3 +68,12 @@ orderForm.addEventListener('submit', (evt) => {
   pristine.validate();
 });
 
+const timeIn = document.querySelector('#timein');
+const timeOut = document.querySelector('#timeout');
+
+timeIn.addEventListener('change', () => {
+  timeOut.value = timeIn.value;
+});
+timeOut.addEventListener('change', () => {
+  timeIn.value = timeOut.value;
+});
