@@ -25,7 +25,6 @@ const createPopup = (data) => {
     featuresList.remove();
   }
 
-
   const photosList = popup.querySelector('.popup__photos');
   const photo = photosList.querySelector('.popup__photo');
   photosList.innerHTML = '';
@@ -40,6 +39,5 @@ const createPopup = (data) => {
   }
   return popup;
 };
-
 
 export {createPopup};

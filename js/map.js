@@ -55,7 +55,6 @@ const setMap = (offers) => {
 
   mainPinMarker.addTo(map);
 
-
   mainPinMarker.on('move', (evt) => {
     document.querySelector('#address').value = `${evt.target.getLatLng().lat.toFixed(5)}, ${evt.target.getLatLng().lng.toFixed(5)}`;
   });
