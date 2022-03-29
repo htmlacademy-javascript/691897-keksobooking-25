@@ -414,7 +414,7 @@ fieldset {
 }
 
 .ad-form__slider:not(#fake-id) .noUi-connect {
-  background-color: #353535;
+  background-color: #d72020;
 }
 
 .ad-form__slider:not(#fake-id) .noUi-handle {
@@ -664,6 +664,10 @@ fieldset {
   outline: none;
   -webkit-box-shadow: 0 0 2px 2px #ff6547;
           box-shadow: 0 0 2px 2px #ff6547;
+}
+
+.pristine-error.text-help {
+  color: #d72020;
 }
 
 

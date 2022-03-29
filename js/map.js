@@ -13,7 +13,6 @@ const setMap = (offers) => {
     },
   ).addTo(map);
 
-
   const resetButton = document.querySelector('.ad-form__reset');
   const mainPinIcon = L.icon({
     iconUrl: './img/main-pin.svg',
@@ -54,7 +53,6 @@ const setMap = (offers) => {
   });
 
   mainPinMarker.addTo(map);
-
 
   mainPinMarker.on('move', (evt) => {
     document.querySelector('#address').value = `${evt.target.getLatLng().lat.toFixed(5)}, ${evt.target.getLatLng().lng.toFixed(5)}`;

@@ -1,8 +1,6 @@
 const sliderElement = document.querySelector('.ad-form__slider');
 const valueElement = document.querySelector('#price');
 
-// valueElement.value = 0;
-
 noUiSlider.create(sliderElement, {
   range: {
     min: 0,
@@ -35,4 +33,3 @@ valueElement.addEventListener('input', function () {
     sliderElement.noUiSlider.set([this.value, null]);
   }
 });
-
