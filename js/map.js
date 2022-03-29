@@ -13,7 +13,6 @@ const setMap = (offers) => {
     },
   ).addTo(map);
 
-
   const resetButton = document.querySelector('.ad-form__reset');
   const mainPinIcon = L.icon({
     iconUrl: './img/main-pin.svg',

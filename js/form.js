@@ -46,7 +46,6 @@ const roomGuestAmount = {
   '100': ['0']
 };
 
-
 const getGuestAmountError = () => 'Данные заполнены неверно';
 
 function validateRoomGuest () {

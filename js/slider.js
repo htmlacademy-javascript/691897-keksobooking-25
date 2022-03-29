@@ -33,4 +33,3 @@ valueElement.addEventListener('input', function () {
     sliderElement.noUiSlider.set([this.value, null]);
   }
 });
-
