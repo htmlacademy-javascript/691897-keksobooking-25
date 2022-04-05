@@ -1,4 +1,5 @@
 import {typeItems} from './data.js';
+// import {isEscapeKey, isEnterKey} from './util.js';
 
 const cardTemplate = document.querySelector('#card').content.querySelector('.popup');
 const createPopup = (data) => {

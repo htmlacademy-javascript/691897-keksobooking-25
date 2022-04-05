@@ -70,4 +70,4 @@ const setMap = (offers) => {
   });
 };
 
-export { setMap };
+export {setMap};

@@ -1,8 +1,12 @@
-import {getOffers} from './data.js';
 import './form.js';
 import {setMap} from './map.js';
 import './slider.js';
+// import {setUserFormSubmit} from './form.js';
+import {getData} from './api.js';
 
-const offers = getOffers();
+getData((offers) => {
+  setMap(offers.slice(0, 10));
+});
 
-setMap(offers);
+// setUserFormSubmit();
+// , (error) => {console.log(error);}

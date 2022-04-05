@@ -1,3 +1,6 @@
+import {sendData} from './api.js';
+import {showSendDataError, showSendDataSuccess} from './utils.js';
+
 const orderForm = document.querySelector('.ad-form');
 const pristine = new Pristine(orderForm, {
   classTo: 'ad-form__element',
@@ -64,8 +67,36 @@ capacity.addEventListener('change', () => {
 
 orderForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  pristine.validate();
+  if (pristine.validate()) {
+    sendData(showSendDataSuccess, showSendDataError, new FormData(orderForm));
+  }
 });
+// const setUserFormSubmit = (onSuccess) => {
+//   orderForm.addEventListener('submit', (evt) => {
+//     evt.preventDefault();
+//     const isValid = pristine.validate();
+//     if (isValid) {
+//       const formData = new FormData (evt.target);
+//       fetch(
+//         'https://25.javascript.pages.academy/keksobooking',
+//         {
+//           method: 'POST',
+//           body: formData,
+//         },
+//       )
+//         .then((response) => {
+//           if (response.ok) {
+//             onSuccess();
+//           } else {
+//             showAlert('Не удалось отправить форму. Попробуйте ещё раз');
+//           }
+//         })
+//         .catch(() => {
+//           showAlert('Не удалось отправить форму. Попробуйте ещё раз');
+//         });
+//     }
+//   });
+// };
 
 const timeIn = document.querySelector('#timein');
 const timeOut = document.querySelector('#timeout');
@@ -76,3 +107,5 @@ timeIn.addEventListener('change', () => {
 timeOut.addEventListener('change', () => {
   timeIn.value = timeOut.value;
 });
+
+// export {setUserFormSubmit};
