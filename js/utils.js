@@ -1,3 +1,4 @@
+import {resetApp} from './map.js';
 //Функция, возвращающая случайное целое число из переданного диапазона включительно
 
 function getRandomPositiveInteger(a, b) {
@@ -18,12 +19,16 @@ function getRandomPositiveFloat(a, b, digits = 1) {
 }
 getRandomPositiveFloat(1, 3, 2);
 
+const toggleFormDisableStatus = (status) => {
+  const inputs = document.querySelectorAll('.ad-form fieldset');
+  inputs.forEach((input) => {input.disabled = status;});
+};
+
 const getRandomArrayElement = (elements) => elements[getRandomPositiveInteger(0, elements.length - 1)];
 const getRandomArray = (elements) => elements.sort(() => Math.random() - 0.5).slice(0, getRandomPositiveInteger(0, elements.length - 1));
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 const isEnterKey = (evt) => evt.key === 'Enter';
-const isMouseClick = (evt) => evt.which === 1;
 const ALERT_SHOW_TIME = 5000;
 const showAlert = (message) => {
   const alertContainer = document.createElement('div');
@@ -46,39 +51,31 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
+
 const showSendDataError = () => {
   const errorMessage = document.querySelector('#error').content.querySelector('.error').cloneNode(true);
   document.body.append(errorMessage);
   const errorMessageTitle = document.querySelector('.error');
   const errorButton = document.querySelector('.error__button');
-  errorButton.addEventListener('click', () => {
-    errorMessageTitle.classList.add('hidden');
-  });
 
-  document.removeEventListener('click', () => {
-    errorMessageTitle.classList.add('hidden');
-  });
+  const closeUserModal = () => {
+    errorMessageTitle.remove('error');
+    document.removeEventListener('keydown', onPopupEscKeydown);
+  };
 
-  document.addEventListener('keydown', (evt) => {
+  function onPopupEscKeydown (evt) {
     if (isEscapeKey(evt)) {
       evt.preventDefault();
-      errorMessageTitle.classList.add('hidden');
+      closeUserModal();
     }
-  });
+  }
 
-  document.removeEventListener('keydown', () => {
-    errorMessageTitle.classList.add('hidden');
-  });
+  errorButton.addEventListener('click', closeUserModal);
+  document.addEventListener('keydown', onPopupEscKeydown);
 
-  document.addEventListener('mouseup', (evt) => {
-    if (isMouseClick(evt)) {
-      evt.preventDefault();
-      errorMessageTitle.classList.add('hidden');
-    }
-  });
-
-  document.removeEventListener('mouseup', () => {
-    errorMessageTitle.classList.add('hidden');
+  errorMessageTitle.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    closeUserModal();
   });
 };
 
@@ -86,50 +83,27 @@ const showSendDataSuccess = () => {
   const successMessage = document.querySelector('#success').content.querySelector('.success').cloneNode(true);
   document.body.append(successMessage);
   const successMessageTitle = document.querySelector('.success');
-  document.addEventListener('keydown', (evt) => {
+  const closeUserModal = () => {
+    successMessageTitle.remove('success');
+    document.removeEventListener('keydown', onPopupEscKeydown);
+  };
+  resetApp();
+  function onPopupEscKeydown (evt) {
     if (isEscapeKey(evt)) {
       evt.preventDefault();
-      successMessageTitle.classList.add('hidden');
+      closeUserModal();
     }
-  });
+  }
 
-  document.removeEventListener('keydown', () => {
-    successMessageTitle.classList.add('hidden');
-  });
-
-  document.addEventListener('mouseup', (evt) => {
-    if (isMouseClick(evt)) {
-      evt.preventDefault();
-      successMessageTitle.classList.add('hidden');
-    }
-  });
-
-  document.removeEventListener('keydown', () => {
-    successMessageTitle.classList.add('hidden');
+  successMessageTitle.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    closeUserModal();
   });
 };
-
-// const onPopupEscKeydown = (evt) => {
-//   if (isEscapeKey(evt)) {
-//     evt.preventDefault();
-//     closeUserModal();
-//   }
-// };
-
-// document.addEventListener('keydown', (evt) => {
-//   if (isEscapeKey(evt)) {
-//     evt.preventDefault();
-//     errorMessageTitle.classList.add('hidden');
-//   }
-// });
-
-
-// errorMessageTitle.addEventListener('click', () => {
-//   this.classList.remove('hidden');
-// });
 
 export { getRandomPositiveInteger };
 export { getRandomPositiveFloat };
 export { getRandomArrayElement };
 export { getRandomArray };
 export { isEscapeKey, isEnterKey, showAlert, showSendDataError, showSendDataSuccess };
+export {toggleFormDisableStatus};
