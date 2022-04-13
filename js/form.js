@@ -1,3 +1,8 @@
+// import { reset } from 'browser-sync';
+import {sendData} from './api.js';
+// import { resetApp } from './map.js';
+import {showSendDataError, showSendDataSuccess} from './utils.js';
+
 const orderForm = document.querySelector('.ad-form');
 const pristine = new Pristine(orderForm, {
   classTo: 'ad-form__element',
@@ -64,7 +69,9 @@ capacity.addEventListener('change', () => {
 
 orderForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  pristine.validate();
+  if (pristine.validate()) {
+    sendData(showSendDataSuccess, showSendDataError, new FormData(orderForm));
+  }
 });
 
 const timeIn = document.querySelector('#timein');
@@ -76,3 +83,5 @@ timeIn.addEventListener('change', () => {
 timeOut.addEventListener('change', () => {
   timeIn.value = timeOut.value;
 });
+
+// export {setUserFormSubmit};
