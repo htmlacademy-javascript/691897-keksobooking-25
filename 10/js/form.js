@@ -1,4 +1,6 @@
+// import { reset } from 'browser-sync';
 import {sendData} from './api.js';
+import { resetApp } from './map.js';
 import {showSendDataError, showSendDataSuccess} from './utils.js';
 
 const orderForm = document.querySelector('.ad-form');
@@ -71,32 +73,6 @@ orderForm.addEventListener('submit', (evt) => {
     sendData(showSendDataSuccess, showSendDataError, new FormData(orderForm));
   }
 });
-// const setUserFormSubmit = (onSuccess) => {
-//   orderForm.addEventListener('submit', (evt) => {
-//     evt.preventDefault();
-//     const isValid = pristine.validate();
-//     if (isValid) {
-//       const formData = new FormData (evt.target);
-//       fetch(
-//         'https://25.javascript.pages.academy/keksobooking',
-//         {
-//           method: 'POST',
-//           body: formData,
-//         },
-//       )
-//         .then((response) => {
-//           if (response.ok) {
-//             onSuccess();
-//           } else {
-//             showAlert('Не удалось отправить форму. Попробуйте ещё раз');
-//           }
-//         })
-//         .catch(() => {
-//           showAlert('Не удалось отправить форму. Попробуйте ещё раз');
-//         });
-//     }
-//   });
-// };
 
 const timeIn = document.querySelector('#timein');
 const timeOut = document.querySelector('#timeout');
