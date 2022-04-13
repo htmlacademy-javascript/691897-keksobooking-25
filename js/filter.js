@@ -46,9 +46,7 @@ const checkFeatures = ({offer}) => {
   }
   return true;
 };
-const filterOffers = (offers) => {
-  return offers.filter((offer) => checkType(offer) && checkFeatures(offer) && checkPrice(offer) && checkRooms(offer) && checkGuests(offer));
-};
+const filterOffers = (offers) => offers.filter((offer) => checkType(offer) && checkFeatures(offer) && checkPrice(offer) && checkRooms(offer) && checkGuests(offer));
 
 export {filterOffers, mapFilters};
 
