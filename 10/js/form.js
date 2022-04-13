@@ -1,6 +1,6 @@
 // import { reset } from 'browser-sync';
 import {sendData} from './api.js';
-import { resetApp } from './map.js';
+// import { resetApp } from './map.js';
 import {showSendDataError, showSendDataSuccess} from './utils.js';
 
 const orderForm = document.querySelector('.ad-form');
