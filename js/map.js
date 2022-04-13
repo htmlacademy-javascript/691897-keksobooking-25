@@ -1,4 +1,6 @@
 import { createPopup } from './popup.js';
+console.log(L);
+const pinsLayer = L.layerGroup([]);
 const map = L.map('map-canvas')
   .setView({
     lat: 35.6894,
@@ -26,30 +28,12 @@ const mainPinMarker = L.marker(
     icon: mainPinIcon,
   },
 );
-const resetApp = (evt) => {
-  evt.preventDefault();
-  document.querySelector('.ad-form').reset();
-  document.querySelector('#address').value = '35.6894, 139.692';
-  mainPinMarker.setLatLng({
-    lat: 35.6894,
-    lng: 139.692,
-  });
-  map.setView({
-    lat: 35.6894,
-    lng: 139.692,
-  }, 10);
-};
-
-const setMap = (offers) => {
-  document.querySelector('#address').value = '35.6894, 139.692';
-
-  const resetButton = document.querySelector('.ad-form__reset');
+const renderPins = (offers) => {
   const PinIcon = L.icon({
     iconUrl: './img/pin.svg',
     iconSize: [40, 40],
     iconAnchor: [20, 40],
   });
-
   offers.forEach((offer) => {
     const marker = L.marker(
       {
@@ -62,17 +46,44 @@ const setMap = (offers) => {
     );
 
     marker
-      .addTo(map)
+      .addTo(pinsLayer)
       .bindPopup(createPopup(offer));
   });
+};
+const resetApp = () => {
+  document.querySelector('.ad-form').reset();
+  document.querySelector('#address').value = '35.6894, 139.692';
+  mainPinMarker.setLatLng({
+    lat: 35.6894,
+    lng: 139.692,
+  });
+  map.closePopup();
+  map.setView({
+    lat: 35.6894,
+    lng: 139.692,
+  }, 10);
+};
 
+const setMap = (offers) => {
+  document.querySelector('#address').value = '35.6894, 139.692';
+
+  const resetButton = document.querySelector('.ad-form__reset');
+  renderPins(offers);
+  pinsLayer.addTo(map);
   mainPinMarker.addTo(map);
 
   mainPinMarker.on('move', (evt) => {
-    document.querySelector('#address').value = `${evt.target.getLatLng().lat.toFixed(5)}, ${evt.target.getLatLng().lng.toFixed(5)}`;
+    document.querySelector('#address').value = `${evt.target.getLatLng().lat.toFixed(4)}, ${evt.target.getLatLng().lng.toFixed(4)}`;
   });
 
-  resetButton.addEventListener('click', resetApp);
+  resetButton.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    resetApp();
+  });
 };
 
-export { setMap, resetApp };
+const clearMap = () => {
+  pinsLayer.clearLayers();
+};
+
+export { setMap, resetApp, clearMap, renderPins };
