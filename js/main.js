@@ -2,6 +2,7 @@ import './form.js';
 import {setMap, clearMap, renderPins} from './map.js';
 import './slider.js';
 import {filterOffers, mapFilters} from './filter.js';
+import './avatars.js';
 // import {setUserFormSubmit} from './form.js';
 import {getData} from './api.js';
 import { toggleFormDisableStatus, showAlert } from './utils.js';
