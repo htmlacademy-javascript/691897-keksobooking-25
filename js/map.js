@@ -1,5 +1,5 @@
 import { createPopup } from './popup.js';
-// console.log(L);
+
 const pinsLayer = L.layerGroup([]);
 const map = L.map('map-canvas')
   .setView({

@@ -7,7 +7,6 @@ const getData = (onSuccess, onError) => {
 };
 
 const sendData = (onSuccess, onFail, body) => {
-  // console.log(body);
   fetch(
     'https://25.javascript.pages.academy/keksobooking',
     {
