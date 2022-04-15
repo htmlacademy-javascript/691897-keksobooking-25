@@ -103,4 +103,4 @@ export { getRandomPositiveFloat };
 export { getRandomArrayElement };
 export { getRandomArray };
 export { isEscapeKey, isEnterKey, showAlert, showSendDataError, showSendDataSuccess };
-export {toggleFormDisableStatus};
+export { toggleFormDisableStatus };
