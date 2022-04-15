@@ -15,21 +15,30 @@ const checkPrice = ({offer}) => {
   if (housingPrice.value === 'any') {
     return true;
   }
-  return offer.price === housingPrice.value;
+  if (housingPrice.value === 'low') {
+    return offer.price < 10000;
+  }
+
+  if (housingPrice.value === 'middle') {
+    return offer.price > 10000 && offer.price < 50000;
+  }
+  if (housingPrice.value === 'high') {
+    return offer.price > 50000;
+  }
 };
 
 const checkRooms = ({offer}) => {
   if (housingRooms.value === 'any') {
     return true;
   }
-  return offer.rooms === housingRooms.value;
+  return offer.rooms === +housingRooms.value;
 };
 
 const checkGuests = ({offer}) => {
   if (housingGuests.value === 'any') {
     return true;
   }
-  return offer.guests === housingGuests.value;
+  return offer.guests === +housingGuests.value;
 };
 
 
