@@ -1,5 +1,4 @@
 import {resetApp} from './map.js';
-//Функция, возвращающая случайное целое число из переданного диапазона включительно
 
 function getRandomPositiveInteger(a, b) {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
@@ -8,8 +7,6 @@ function getRandomPositiveInteger(a, b) {
   return Math.floor(result);
 }
 getRandomPositiveInteger(1, 4);
-
-//Функция, возвращающая случайное число с плавающей точкой из переданного диапазона включительно
 
 function getRandomPositiveFloat(a, b, digits = 1) {
   const lower = Math.min(Math.abs(a), Math.abs(b));

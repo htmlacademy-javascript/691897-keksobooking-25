@@ -18,7 +18,6 @@ const checkPrice = ({offer}) => {
   if (housingPrice.value === 'low') {
     return offer.price < 10000;
   }
-
   if (housingPrice.value === 'middle') {
     return offer.price > 10000 && offer.price < 50000;
   }
@@ -44,7 +43,6 @@ const checkGuests = ({offer}) => {
 
 const checkFeatures = ({offer}) => {
   const features = document.querySelectorAll('.map__checkbox:checked');
-  // console.log(features);
   if (!offer.features && features.length) {
     return false;
   }
