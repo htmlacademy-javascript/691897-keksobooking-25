@@ -1,7 +1,6 @@
 import { sendData } from './api.js';
 import { showSendDataError, showSendDataSuccess } from './utils.js';
 
-
 const orderForm = document.querySelector('.ad-form');
 const roomNumber = orderForm.querySelector('#room_number');
 const capacity = orderForm.querySelector('#capacity');

@@ -2,6 +2,7 @@ import { toggleFormDisableStatus } from './utils.js';
 import { createPopup } from './popup.js';
 import { resetPictures } from './avatars.js';
 import { resetFilters } from './filter.js';
+
 const pinsLayer = L.layerGroup([]);
 let map;
 const initMap = () => {

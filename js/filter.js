@@ -21,7 +21,6 @@ const checkPrice = ({ offer }) => {
   if (housingPrice.value === 'low') {
     return offer.price < 10000;
   }
-
   if (housingPrice.value === 'middle') {
     return offer.price > 10000 && offer.price < 50000;
   }
