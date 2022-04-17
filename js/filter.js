@@ -4,14 +4,14 @@ const housingRooms = document.querySelector('#housing-rooms');
 const housingGuests = document.querySelector('#housing-guests');
 const mapFilters = document.querySelector('.map__filters');
 
-const checkType = ({offer}) => {
+const checkType = ({ offer }) => {
   if (housingType.value === 'any') {
     return true;
   }
   return offer.type === housingType.value;
 };
 
-const checkPrice = ({offer}) => {
+const checkPrice = ({ offer }) => {
   if (housingPrice.value === 'any') {
     return true;
   }
@@ -27,24 +27,22 @@ const checkPrice = ({offer}) => {
   }
 };
 
-const checkRooms = ({offer}) => {
+const checkRooms = ({ offer }) => {
   if (housingRooms.value === 'any') {
     return true;
   }
   return offer.rooms === +housingRooms.value;
 };
 
-const checkGuests = ({offer}) => {
+const checkGuests = ({ offer }) => {
   if (housingGuests.value === 'any') {
     return true;
   }
   return offer.guests === +housingGuests.value;
 };
 
-
-const checkFeatures = ({offer}) => {
+const checkFeatures = ({ offer }) => {
   const features = document.querySelectorAll('.map__checkbox:checked');
-  // console.log(features);
   if (!offer.features && features.length) {
     return false;
   }
@@ -57,5 +55,5 @@ const checkFeatures = ({offer}) => {
 };
 const filterOffers = (offers) => offers.filter((offer) => checkType(offer) && checkFeatures(offer) && checkPrice(offer) && checkRooms(offer) && checkGuests(offer));
 
-export {filterOffers, mapFilters};
+export { filterOffers, mapFilters };
 
