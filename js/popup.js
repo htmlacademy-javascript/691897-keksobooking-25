@@ -1,4 +1,10 @@
-import { typeItems } from './data.js';
+const HOUSE_TYPE = {
+  palace: 'Дворец',
+  flat: 'Квартира',
+  house: 'Дом',
+  bungalow: 'Бунгало',
+  hotel: 'Отель'
+};
 
 const cardTemplate = document.querySelector('#card').content.querySelector('.popup');
 const createPopup = (data) => {
@@ -10,7 +16,7 @@ const createPopup = (data) => {
   popup.querySelector('.popup__text--capacity').textContent = `${data.offer.rooms} комнаты для ${data.offer.guests} гостей`;
   popup.querySelector('.popup__text--time').textContent = `Заезд после ${data.offer.checkin}, выезд до ${data.offer.checkout}`;
   popup.querySelector('.popup__description').textContent = data.offer.description;
-  popup.querySelector('.popup__type').textContent = typeItems[data.offer.type];
+  popup.querySelector('.popup__type').textContent = HOUSE_TYPE[data.offer.type];
   const featuresList = popup.querySelector('.popup__features');
   const feature = featuresList.querySelector('.popup__feature');
   featuresList.innerHTML = '';

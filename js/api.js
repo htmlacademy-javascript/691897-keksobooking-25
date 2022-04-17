@@ -3,12 +3,12 @@ const getData = (onSuccess, onError) => {
     .then((response) => response.json())
     .then((data) => {
       onSuccess(data);
-    }).catch((error) => {onError(error);});
+    }).catch((error) => { onError(error); });
 };
 
 const sendData = (onSuccess, onFail, body) => {
   fetch(
-    'https://25.javascript.pages.academy/keksobooking',
+    'https://25.javascript.pages.academy/keksobookin',
     {
       method: 'POST',
       body,
@@ -26,4 +26,4 @@ const sendData = (onSuccess, onFail, body) => {
     });
 };
 
-export {getData, sendData};
+export { getData, sendData };

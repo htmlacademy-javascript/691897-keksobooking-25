@@ -1,15 +1,20 @@
-import {sendData} from './api.js';
-import {showSendDataError, showSendDataSuccess} from './utils.js';
+import { sendData } from './api.js';
+import { showSendDataError, showSendDataSuccess } from './utils.js';
 
 const orderForm = document.querySelector('.ad-form');
-const pristine = new Pristine(orderForm, {
-  classTo: 'ad-form__element',
-  errorTextParent: 'ad-form__element',
-});
-
+const roomNumber = orderForm.querySelector('#room_number');
+const capacity = orderForm.querySelector('#capacity');
 const priceInput = orderForm.querySelector('#price');
 const houseType = orderForm.querySelector('#type');
-const houseMinPrice = {
+const timeIn = document.querySelector('#timein');
+const timeOut = document.querySelector('#timeout');
+const ROOM_GUEST_AMOUNT = {
+  '1': ['1'],
+  '2': ['1', '2'],
+  '3': ['1', '2', '3'],
+  '100': ['0']
+};
+const HOUSE_MIN_PRICE = {
   'bungalow': 0,
   'flat': 1000,
   'hotel': 3000,
@@ -17,11 +22,16 @@ const houseMinPrice = {
   'palace': 10000
 };
 
+const pristine = new Pristine(orderForm, {
+  classTo: 'ad-form__element',
+  errorTextParent: 'ad-form__element',
+});
+
 const getHousePriceError = () => `Минимальная цена ${priceInput.min}`;
 
-function validatePrice () {
-  priceInput.placeholder = houseMinPrice[houseType.value];
-  priceInput.min = houseMinPrice[houseType.value];
+function validatePrice() {
+  priceInput.placeholder = HOUSE_MIN_PRICE[houseType.value];
+  priceInput.min = HOUSE_MIN_PRICE[houseType.value];
   return +priceInput.value >= +priceInput.min;
 }
 
@@ -40,19 +50,10 @@ pristine.addValidator(
   validatePrice,
 );
 
-const roomNumber = orderForm.querySelector('#room_number');
-const capacity = orderForm.querySelector('#capacity');
-const roomGuestAmount = {
-  '1': ['1'],
-  '2': ['1', '2'],
-  '3': ['1', '2', '3'],
-  '100': ['0']
-};
-
 const getGuestAmountError = () => 'Данные заполнены неверно';
 
-function validateRoomGuest () {
-  return roomGuestAmount[roomNumber.value].includes(capacity.value);
+function validateRoomGuest() {
+  return ROOM_GUEST_AMOUNT[roomNumber.value].includes(capacity.value);
 }
 
 pristine.addValidator(
@@ -72,9 +73,6 @@ orderForm.addEventListener('submit', (evt) => {
   }
 });
 
-const timeIn = document.querySelector('#timein');
-const timeOut = document.querySelector('#timeout');
-
 timeIn.addEventListener('change', () => {
   timeOut.value = timeIn.value;
 });
@@ -82,4 +80,3 @@ timeOut.addEventListener('change', () => {
   timeIn.value = timeOut.value;
 });
 
-// export {setUserFormSubmit};
