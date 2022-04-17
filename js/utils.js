@@ -19,8 +19,13 @@ function getRandomPositiveFloat(a, b, digits = 1) {
 }
 getRandomPositiveFloat(1, 3, 2);
 
-const toggleFormDisableStatus = (status) => {
+function toggleFormDisableStatus (status) {
   const inputs = document.querySelectorAll('.ad-form fieldset');
+  inputs.forEach((input) => {input.disabled = status;});
+}
+
+const toggleFilterFormDisableStatus = (status) => {
+  const inputs = document.querySelectorAll('.map__filters fieldset, .map__filters select');
   inputs.forEach((input) => {input.disabled = status;});
 };
 
@@ -94,7 +99,7 @@ const showSendDataSuccess = () => {
       closeUserModal();
     }
   }
-
+  document.addEventListener('keydown', onPopupEscKeydown);
   successMessageTitle.addEventListener('click', (evt) => {
     evt.preventDefault();
     closeUserModal();
@@ -117,5 +122,5 @@ export { getRandomPositiveFloat };
 export { getRandomArrayElement };
 export { getRandomArray };
 export { isEscapeKey, isEnterKey, showAlert, showSendDataError, showSendDataSuccess };
-export { toggleFormDisableStatus };
+export { toggleFormDisableStatus, toggleFilterFormDisableStatus };
 export { debounce };
