@@ -1,4 +1,4 @@
-import {typeItems} from './data.js';
+import { typeItems } from './data.js';
 
 const cardTemplate = document.querySelector('#card').content.querySelector('.popup');
 const createPopup = (data) => {
@@ -40,4 +40,4 @@ const createPopup = (data) => {
   return popup;
 };
 
-export {createPopup};
+export { createPopup };

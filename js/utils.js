@@ -98,9 +98,21 @@ const showSendDataSuccess = () => {
   });
 };
 
+function debounce (callback, timeoutDelay = 500) {
+
+  let timeoutId;
+
+  return (...rest) => {
+
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+}
+
 export { getRandomPositiveInteger };
 export { getRandomPositiveFloat };
 export { getRandomArrayElement };
 export { getRandomArray };
 export { isEscapeKey, isEnterKey, showAlert, showSendDataError, showSendDataSuccess };
 export { toggleFormDisableStatus };
+export { debounce };
