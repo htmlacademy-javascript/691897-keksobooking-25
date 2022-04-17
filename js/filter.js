@@ -4,6 +4,9 @@ const housingRooms = document.querySelector('#housing-rooms');
 const housingGuests = document.querySelector('#housing-guests');
 const mapFilters = document.querySelector('.map__filters');
 
+const resetFilters = () => {
+  mapFilters.reset();
+};
 const checkType = ({ offer }) => {
   if (housingType.value === 'any') {
     return true;
@@ -54,5 +57,5 @@ const checkFeatures = ({ offer }) => {
 };
 const filterOffers = (offers) => offers.filter((offer) => checkType(offer) && checkFeatures(offer) && checkPrice(offer) && checkRooms(offer) && checkGuests(offer));
 
-export { filterOffers, mapFilters };
+export { filterOffers, mapFilters, resetFilters };
 
