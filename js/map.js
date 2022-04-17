@@ -1,6 +1,7 @@
 import { toggleFormDisableStatus } from './utils.js';
 import { createPopup } from './popup.js';
 import { resetPictures } from './avatars.js';
+import { resetFilters } from './filter.js';
 const pinsLayer = L.layerGroup([]);
 let map;
 const initMap = () => {
@@ -70,6 +71,7 @@ const resetApp = () => {
     lng: 139.692,
   }, 10);
   resetPictures();
+  resetFilters();
 };
 
 const setMarkers = (offers) => {
