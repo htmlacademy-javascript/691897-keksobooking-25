@@ -1,3 +1,5 @@
+const MIDDLE_PRICE_VALUE = 10000;
+const MAX_PRICE_VALUE = 50000;
 const housingType = document.querySelector('#housing-type');
 const housingPrice = document.querySelector('#housing-price');
 const housingRooms = document.querySelector('#housing-rooms');
@@ -19,13 +21,13 @@ const checkPrice = ({ offer }) => {
     return true;
   }
   if (housingPrice.value === 'low') {
-    return offer.price < 10000;
+    return offer.price < MIDDLE_PRICE_VALUE;
   }
   if (housingPrice.value === 'middle') {
-    return offer.price > 10000 && offer.price < 50000;
+    return offer.price > MIDDLE_PRICE_VALUE && offer.price < MAX_PRICE_VALUE;
   }
   if (housingPrice.value === 'high') {
-    return offer.price > 50000;
+    return offer.price > MAX_PRICE_VALUE;
   }
 };
 

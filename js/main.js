@@ -8,11 +8,13 @@ import { setMarkers, clearMap, renderPins, initMap } from './map.js';
 import { debounce } from './utils.js';
 
 const RERENDER_DELAY = 500;
+let data = [];
 toggleFilterFormDisableStatus(true);
 toggleFormDisableStatus(true);
 initMap();
 getData((offers) => {
   setMarkers(offers.slice(0, 10));
+  data = offers.slice();
   mapFilters.addEventListener('change', debounce(() => {
     clearMap();
     renderPins(filterOffers(offers).slice(0, 10));
@@ -20,3 +22,5 @@ getData((offers) => {
   );
   toggleFilterFormDisableStatus(false);
 }, showAlert);
+
+export { data };

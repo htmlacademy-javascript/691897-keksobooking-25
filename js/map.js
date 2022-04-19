@@ -2,6 +2,7 @@ import { toggleFormDisableStatus } from './utils.js';
 import { createPopup } from './popup.js';
 import { resetPictures } from './avatars.js';
 import { resetFilters } from './filter.js';
+import { data } from './main.js';
 
 const pinsLayer = L.layerGroup([]);
 let map;
@@ -10,8 +11,8 @@ const initMap = () => {
     toggleFormDisableStatus(false);
   })
     .setView({
-      lat: 35.6894,
-      lng: 139.692,
+      lat: 35.68950,
+      lng: 139.69200,
     }, 10);
 
   L.tileLayer(
@@ -29,8 +30,8 @@ const mainPinIcon = L.icon({
 });
 const mainPinMarker = L.marker(
   {
-    lat: 35.6894,
-    lng: 139.692,
+    lat: 35.68950,
+    lng: 139.69200,
   },
   {
     draggable: true,
@@ -59,24 +60,9 @@ const renderPins = (offers) => {
       .bindPopup(createPopup(offer));
   });
 };
-const resetApp = () => {
-  document.querySelector('.ad-form').reset();
-  document.querySelector('#address').value = '35.6894, 139.692';
-  mainPinMarker.setLatLng({
-    lat: 35.6894,
-    lng: 139.692,
-  });
-  map.closePopup();
-  map.setView({
-    lat: 35.6894,
-    lng: 139.692,
-  }, 10);
-  resetPictures();
-  resetFilters();
-};
 
 const setMarkers = (offers) => {
-  document.querySelector('#address').value = '35.6894, 139.692';
+  document.querySelector('#address').value = '35.68950, 139.69200';
 
   const resetButton = document.querySelector('.ad-form__reset');
   renderPins(offers);
@@ -84,7 +70,7 @@ const setMarkers = (offers) => {
   mainPinMarker.addTo(map);
 
   mainPinMarker.on('move', (evt) => {
-    document.querySelector('#address').value = `${evt.target.getLatLng().lat.toFixed(4)}, ${evt.target.getLatLng().lng.toFixed(4)}`;
+    document.querySelector('#address').value = `${evt.target.getLatLng().lat.toFixed(5)}, ${evt.target.getLatLng().lng.toFixed(5)}`;
   });
 
   resetButton.addEventListener('click', (evt) => {
@@ -92,6 +78,23 @@ const setMarkers = (offers) => {
     resetApp();
   });
 };
+
+function resetApp ()  {
+  document.querySelector('.ad-form').reset();
+  document.querySelector('#address').value = '35.68950, 139.69200';
+  mainPinMarker.setLatLng({
+    lat: 35.68950,
+    lng: 139.69200,
+  });
+  map.closePopup();
+  map.setView({
+    lat: 35.68950,
+    lng: 139.69200,
+  }, 10);
+  resetPictures();
+  resetFilters();
+  setMarkers(data.slice(0, 10));
+}
 
 const clearMap = () => {
   pinsLayer.clearLayers();
